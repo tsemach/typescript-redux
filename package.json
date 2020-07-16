@@ -9,12 +9,27 @@
   "keywords": [],
   "author": "Tsemach Mizrachi <tsemach.mizrachi@gmail.com> (http://tsemach.github.io)",
   "license": "ISC",
+  "jest": {
+    "transform": {
+      ".(ts|tsx)": "<rootDir>/node_modules/ts-jest/preprocessor.js"
+    },
+    "testRegex": "(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$",
+    "moduleFileExtensions": [
+      "ts",
+      "tsx",
+      "js"
+    ]
+  },
   "dependencies": {
+    "jest": "^26.1.0",
+    "log4js": "^6.3.0",
     "logging": "^3.2.0",
     "mocha": "^6.1.4",
-    "redux": "^4.0.1",
+    "redux": "^4.0.5",
     "reflect-metadata": "^0.1.13",
-    "source-map-support": "^0.5.12"
+    "source-map-support": "^0.5.12",
+    "ts-jest": "^26.1.2",
+    "typescript": "^3.9.6"
   },
   "devDependencies": {
     "@types/chai": "^4.1.7",
