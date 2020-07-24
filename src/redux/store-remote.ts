@@ -1,18 +1,28 @@
-import { createStore } from "redux";
+import { createStore, StoreCreator, Store } from "redux";
 
-import reducer from './reducers';
-import { ActionFunctionType, ActionFunctionType2 } from './actions';
-import Consts from "./consts";
-import * as actions from './actions';
+// import reducer from './reducers';
+import { ActionFunctionType, ActionFunctionType2, ActionType } from './actions';
+// import Consts from "./consts";
+// import * as actions from './actions';
 
-class Store {
-  private readonly store = createStore(reducer);
+type ReducerType = (state: any, action: ActionType) => any;
+
+class StoreRemote {  
+  private store: Store;  
   private readonly actions = new Map<string, ActionFunctionType>();
   private readonly actionsType = new Map<string, any>();
 
   constructor() {
-    this.actions.set(Consts.SET_USER, actions.setUser);
-    this.actions.set(Consts.ADD_USER, actions.addUser);
+    // this.actions.set(Consts.SET_USER, actions.setUser);
+    // this.actions.set(Consts.ADD_USER, actions.addUser);
+  }
+
+  addReducer(reducer: ReducerType) {
+    this.store = createStore(reducer);
+  }
+
+  addAction(name: string, action: ActionFunctionType) {
+    this.actions.set(name, action);
   }
 
   dispatch(type: string, uuid: string, payload: any) {
@@ -32,9 +42,9 @@ class Store {
     return this.store.getState();
   }
 
-  get consts() {
-    return Consts;
-  }
+  // get consts() {
+  //   return Consts;
+  // }
 }
 
-export default new Store();
+export default new StoreRemote();
